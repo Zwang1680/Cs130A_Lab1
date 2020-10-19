@@ -88,6 +88,6 @@ void test_search_there(){
     x.insert(f);
     x.insert(j);
     string result = x.lookup("ma");
-    string s = "ma found, count = 1";
+    string s = "ma found, count = 2";
     assertEquals(result, s, "looking up in full tree but not there");
 }
