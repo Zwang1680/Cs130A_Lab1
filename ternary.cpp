@@ -150,151 +150,151 @@ void Tst::deleteWord(string s){
     deleteWord(s, temp);
 }
 
-void removeNode(Tst::Node* r){
-    if(!r){
-        return:
-    }
+// void removeNode(Tst::Node* r){
+//     if(!r){
+//         return:
+//     }
 
-}
+// }
 
 void Tst::deleteWord(string s, Node* r){
     string output;
+    // if (s == r->dataSM){
+    //     r->countSM -= 1;
+    //     if (r->countSM == 0){
+
+    //     }
+    // }
     if (s == r->dataSM){
-        r->countSM -= 1;
-        if (r->countSM == 0){
-            
+        if (r->countSM > 1){
+            r->countSM -= 1;
+            output = s + " deleted, new count = " + to_string(r->countSM);
+            cout << output << endl;
+            return;
+        } else {
+            if (r->left || r->right || r->mid){
+                if(r->mid){
+                    if (r->mid->countSM != 0){
+                        r->dataSM = r->mid->dataSM;
+                        r->countSM = r->mid->countSM;
+                        r->mid->countSM = 1;
+                        deleteWord(r->mid->dataSM, r->mid);
+                        return;
+                    } else if (r->mid->countLG != 0){
+                        r->dataSM = r->mid->dataLG;
+                        r->countSM = r->mid->countLG;
+                        r->mid->countLG = 1;
+                        deleteWord(r->mid->dataLG, r->mid);
+                        return;
+                    }
+                } else if (r->left){
+                    if (r->left->countSM != 0){
+                        r->dataSM = r->left->dataSM;
+                        r->countSM = r->left->countSM;
+                        r->left->countSM = 1;
+                        deleteWord(r->left->dataSM, r->left);
+                        return;
+                    } else if (r->left->countLG != 0){
+                        r->dataSM = r->left->dataLG;
+                        r->countSM = r->left->countLG;
+                        r->left->countLG = 1;
+                        deleteWord(r->left->dataLG, r->left);
+                        return;
+                    }
+                }
+            } else {
+                 if (r->countLG == 0) {
+                    r->left = NULL;
+                    r->right = NULL;
+                    r->mid = NULL;
+                    Node* temp = r->parent;
+                    if (r == temp->left){
+                        temp->left = NULL;
+                    } else if (r == temp->right){
+                        temp->right = NULL;
+                    } else {
+                        temp->mid = NULL;
+                    }
+                    delete(r);
+                    output = s + " deleted";
+                    cout << output << endl;
+                    return;
+                } else {
+                    r->dataSM = r->dataLG;
+                    r->countSM = r->countLG;
+                    r->countLG = 0;
+                    r->dataLG = "";
+                    output = s + " deleted";
+                    cout << output << endl;
+                    return;
+                }
+            }
         }
     }
-    // if (s == r->dataSM){
-    //     if (r->countSM > 1){
-    //         r->countSM -= 1;
-    //         output = s + " deleted, new count = " + to_string(r->countSM);
-    //         cout << output << endl;
-    //         return;
-    //     } else {
-    //         if (r->left || r->right || r->mid){
-    //             if(r->mid){
-    //                 if (r->mid->countSM != 0){
-    //                     r->dataSM = r->mid->dataSM;
-    //                     r->countSM = r->mid->countSM;
-    //                     r->mid->countSM = 1;
-    //                     deleteWord(r->mid->dataSM, r->mid);
-    //                     return;
-    //                 } else if (r->mid->countLG != 0){
-    //                     r->dataSM = r->mid->dataLG;
-    //                     r->countSM = r->mid->countLG;
-    //                     r->mid->countLG = 1;
-    //                     deleteWord(r->mid->dataLG, r->mid);
-    //                     return;
-    //                 }
-    //             } else if (r->left){
-    //                 if (r->left->countSM != 0){
-    //                     r->dataSM = r->left->dataSM;
-    //                     r->countSM = r->left->countSM;
-    //                     r->left->countSM = 1;
-    //                     deleteWord(r->left->dataSM, r->left);
-    //                     return;
-    //                 } else if (r->left->countLG != 0){
-    //                     r->dataSM = r->left->dataLG;
-    //                     r->countSM = r->left->countLG;
-    //                     r->left->countLG = 1;
-    //                     deleteWord(r->left->dataLG, r->left);
-    //                     return;
-    //                 }
-    //             }
-    //         } else {
-    //              if (r->countLG == 0) {
-    //                 r->left = NULL;
-    //                 r->right = NULL;
-    //                 r->mid = NULL;
-    //                 Node* temp = r->parent;
-    //                 if (r == temp->left){
-    //                     temp->left = NULL;
-    //                 } else if (r == temp->right){
-    //                     temp->right = NULL;
-    //                 } else {
-    //                     temp->mid = NULL;
-    //                 }
-    //                 delete(r);
-    //                 output = s + " deleted";
-    //                 cout << output << endl;
-    //                 return;
-    //             } else {
-    //                 r->dataSM = r->dataLG;
-    //                 r->countSM = r->countLG;
-    //                 r->countLG = 0;
-    //                 r->dataLG = "";
-    //                 output = s + " deleted";
-    //                 cout << output << endl;
-    //                 return;
-    //             }
-    //         }
-    //     }
-    // }
-    // if (s == r->dataLG){
-    //     if (r->countLG > 1){
-    //         r->countLG -= 1;
-    //         output = s + " deleted, new count = " + to_string(r->countLG);
-    //         cout << output << endl;
-    //         return;
-    //     } else {
-    //         if (r->left || r->right || r->mid){
-    //             if(r->mid){
-    //                 if (r->mid->countSM != 0){
-    //                     r->dataLG = r->mid->dataSM;
-    //                     r->countLG = r->mid->countSM;
-    //                     r->mid->countSM = 1;
-    //                     deleteWord(r->mid->dataSM, r->mid);
-    //                     return;
-    //                 } else if (r->mid->countLG != 0){
-    //                     r->dataLG = r->mid->dataLG;
-    //                     r->countLG = r->mid->countLG;
-    //                     r->mid->countLG = 1;
-    //                     deleteWord(r->mid->dataLG, r->mid);
-    //                     return;
-    //                 }
-    //             } else if (r->right){
-    //                 if (r->right->countSM != 0){
-    //                     r->dataLG = r->left->dataSM;
-    //                     r->countLG = r->left->countSM;
-    //                     r->right->countSM = 1;
-    //                     deleteWord(r->right->dataSM, r->right);
-    //                     return;
-    //                 } else if (r->right->countLG != 0){
-    //                     r->dataLG = r->left->dataLG;
-    //                     r->countLG = r->left->countLG;
-    //                     r->right->countLG = 1;
-    //                     deleteWord(r->right->dataLG, r->right);
-    //                     return;
-    //                 }
-    //             }
-    //         } else {
-    //             if (r->countSM == 0){
-    //                 r->left = NULL;
-    //                 r->right = NULL;
-    //                 r->mid = NULL;
-    //                 Node* temp = r->parent;
-    //                 if (r == temp->left){
-    //                     temp->left = NULL;
-    //                 } else if (r == temp->right){
-    //                     temp->right = NULL;
-    //                 } else {
-    //                     temp->mid = NULL;
-    //                 }
-    //                 delete(r);
-    //                 output = s + " deleted";
-    //                 cout << output << endl;
-    //                 return;
-    //             } else {
-    //                 r->countLG = 0;
-    //                 r->dataLG = "";
-    //                 output = s + " deleted";
-    //                 cout << output << endl;
-    //                 return;
-    //             }
-    //         }
-    //     }
-    // }
+    if (s == r->dataLG){
+        if (r->countLG > 1){
+            r->countLG -= 1;
+            output = s + " deleted, new count = " + to_string(r->countLG);
+            cout << output << endl;
+            return;
+        } else {
+            if (r->left || r->right || r->mid){
+                if(r->mid){
+                    if (r->mid->countSM != 0){
+                        r->dataLG = r->mid->dataSM;
+                        r->countLG = r->mid->countSM;
+                        r->mid->countSM = 1;
+                        deleteWord(r->mid->dataSM, r->mid);
+                        return;
+                    } else if (r->mid->countLG != 0){
+                        r->dataLG = r->mid->dataLG;
+                        r->countLG = r->mid->countLG;
+                        r->mid->countLG = 1;
+                        deleteWord(r->mid->dataLG, r->mid);
+                        return;
+                    }
+                } else if (r->right){
+                    if (r->right->countSM != 0){
+                        r->dataLG = r->left->dataSM;
+                        r->countLG = r->left->countSM;
+                        r->right->countSM = 1;
+                        deleteWord(r->right->dataSM, r->right);
+                        return;
+                    } else if (r->right->countLG != 0){
+                        r->dataLG = r->left->dataLG;
+                        r->countLG = r->left->countLG;
+                        r->right->countLG = 1;
+                        deleteWord(r->right->dataLG, r->right);
+                        return;
+                    }
+                }
+            } else {
+                if (r->countSM == 0){
+                    r->left = NULL;
+                    r->right = NULL;
+                    r->mid = NULL;
+                    Node* temp = r->parent;
+                    if (r == temp->left){
+                        temp->left = NULL;
+                    } else if (r == temp->right){
+                        temp->right = NULL;
+                    } else {
+                        temp->mid = NULL;
+                    }
+                    delete(r);
+                    output = s + " deleted";
+                    cout << output << endl;
+                    return;
+                } else {
+                    r->countLG = 0;
+                    r->dataLG = "";
+                    output = s + " deleted";
+                    cout << output << endl;
+                    return;
+                }
+            }
+        }
+    }
 }
 
 

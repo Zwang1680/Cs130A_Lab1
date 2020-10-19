@@ -33,7 +33,7 @@ class Tst{
     void deleteNode(Node* r);
     string preorder(Node* r);
     void rangeSearch(string s1, string s2, Node* r);
-    void removeNode(Node* r);
+    // void removeNode(Node* r);
 };
 
 #endif
