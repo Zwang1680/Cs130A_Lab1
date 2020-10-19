@@ -155,7 +155,7 @@ void Tst::deleteWord(string s, Node* r){
     if (s == r->dataSM){
         if (r->countSM > 1){
             r->countSM -= 1;
-            output = s + " deleted, new count " + to_string(r->countSM);
+            output = s + " deleted, new count = " + to_string(r->countSM);
             cout << output << endl;
             return;
         } else {
@@ -203,12 +203,16 @@ void Tst::deleteWord(string s, Node* r){
                         temp->mid = NULL;
                     }
                     delete(r);
+                    output = s + " deleted";
+                    cout << output << endl;
                     return;
                 } else {
                     r->dataSM = r->dataLG;
                     r->countSM = r->countLG;
                     r->countLG = 0;
                     r->dataLG = "";
+                    output = s + " deleted";
+                    cout << output << endl;
                     return;
                 }
             }
@@ -217,7 +221,7 @@ void Tst::deleteWord(string s, Node* r){
     if (s == r->dataLG){
         if (r->countLG > 1){
             r->countLG -= 1;
-            output = s + " deleted, new count " + to_string(r->countLG);
+            output = s + " deleted, new count = " + to_string(r->countLG);
             cout << output << endl;
             return;
         } else {
@@ -265,10 +269,14 @@ void Tst::deleteWord(string s, Node* r){
                         temp->mid = NULL;
                     }
                     delete(r);
+                    output = s + " deleted";
+                    cout << output << endl;
                     return;
                 } else {
                     r->countLG = 0;
                     r->dataLG = "";
+                    output = s + " deleted";
+                    cout << output << endl;
                     return;
                 }
             }
