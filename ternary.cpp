@@ -165,6 +165,9 @@ void Tst::deleteWord(string s, Node* r){
 
     //     }
     // }
+    if (!r){
+        return;
+    }
     if (s == r->dataSM){
         if (r->countSM > 1){
             r->countSM -= 1;
